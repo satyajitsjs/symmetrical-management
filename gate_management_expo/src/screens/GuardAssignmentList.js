@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import axios from 'axios';
+import BaseURL from '../components/BaseURL';
 
 const GuardAssignmentList = ({ navigation }) => {
   const [assignments, setAssignments] = useState([]);
+  const baseURL = BaseURL()
 
   useEffect(() => {
     fetchAssignments();
   }, []);
 
   const fetchAssignments = () => {
-    axios.get('http://98.70.76.242:8000/api/guard-assignments/')
+    axios.get(`${baseURL}guard-assignments/`)
       .then(response => setAssignments(response.data))
       .catch(error => console.error(error));
   };
 
   const handleDelete = (id) => {
-    axios.delete(`http://98.70.76.242:8000/api/guard-assignments/${id}/`)
+    axios.delete(`${baseURL}guard-assignments/${id}/`)
       .then(() => {
         Alert.alert('Success', 'Guard assignment deleted successfully!');
         fetchAssignments(); // Refresh the list after deletion

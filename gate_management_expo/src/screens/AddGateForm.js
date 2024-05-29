@@ -11,6 +11,7 @@ import {
 import { Picker } from "@react-native-picker/picker";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import axios from "axios";
+import BaseURL from "../components/BaseURL";
 
 const AddGateForm = ({ navigation }) => {
   const [gateName, setGateName] = useState("");
@@ -21,6 +22,7 @@ const AddGateForm = ({ navigation }) => {
   const [endTime, setEndTime] = useState(new Date());
   const [showStartTimePicker, setShowStartTimePicker] = useState(false);
   const [showEndTimePicker, setShowEndTimePicker] = useState(false);
+  const baseURL = BaseURL();
 
   const handleStartTimeChange = (event, selectedTime) => {
     setShowStartTimePicker(Platform.OS === "ios");
@@ -47,7 +49,7 @@ const AddGateForm = ({ navigation }) => {
     };
 
     axios
-      .post("http://98.70.76.242:8000/api/gates/", newGate)
+      .post(`${baseURL}gates/`, newGate)
       .then((response) => {
         navigation.navigate("GateList");
       })

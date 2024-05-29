@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, FlatList, Button, StyleSheet } from "react-native";
 import axios from "axios";
+import BaseURL from "../components/BaseURL";
 
 const GateList = ({ navigation }) => {
   const [gates, setGates] = useState([]);
+  const baseURL = BaseURL()
+
 
   useEffect(() => {
     axios
-      .get("http://98.70.76.242:8000/api/gates/")
+      .get(`${baseURL}gates/`)
       .then((response) => {
         setGates(response.data);
       })
@@ -18,7 +21,7 @@ const GateList = ({ navigation }) => {
 
   const handleDelete = (id) => {
     axios
-      .delete(`http://98.70.76.242:8000/api/gates/${id}/`)
+      .delete(`${baseURL}gates/${id}/`)
       .then(() => {
         setGates(gates.filter((gate) => gate.id !== id));
       })

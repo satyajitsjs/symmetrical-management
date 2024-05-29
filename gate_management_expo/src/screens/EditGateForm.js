@@ -3,6 +3,7 @@ import { View, Text, TextInput, Button, StyleSheet, Platform, TouchableOpacity }
 import { Picker } from "@react-native-picker/picker";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import axios from "axios";
+import BaseURL from "../components/BaseURL";
 
 const EditGateForm = ({ route, navigation }) => {
   const { gateId } = route.params;
@@ -14,10 +15,11 @@ const EditGateForm = ({ route, navigation }) => {
   const [endTime, setEndTime] = useState(new Date());
   const [showStartTimePicker, setShowStartTimePicker] = useState(false);
   const [showEndTimePicker, setShowEndTimePicker] = useState(false);
+  const baseURL = BaseURL();
 
   useEffect(() => {
     axios
-      .get(`http://98.70.76.242:8000/api/gates/${gateId}/`)
+      .get(`${baseURL}gates/${gateId}/`)
       .then((response) => {
         const gate = response.data;
         setGateName(gate.name);
@@ -46,7 +48,7 @@ const EditGateForm = ({ route, navigation }) => {
 
   const handleSubmit = () => {
     axios
-      .put(`http://98.70.76.242:8000/api/gates/${gateId}/`, {
+      .put(`${baseURL}gates/${gateId}/`, {
         name: gateName,
         number_of_guards: parseInt(numberOfGuards), // Convert back to integer for the API
         gate_type: gateType,

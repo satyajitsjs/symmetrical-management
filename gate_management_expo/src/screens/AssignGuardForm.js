@@ -2,23 +2,24 @@ import React, { useState, useEffect } from "react";
 import { View, Text, TextInput, Button, StyleSheet, Alert } from "react-native";
 import axios from "axios";
 import { Picker } from "@react-native-picker/picker";
-
+import BaseURL from "../components/BaseURL";
 const AssignGuardForm = ({ navigation }) => {
   const [uniqueCode, setUniqueCode] = useState("");
   const [gateId, setGateId] = useState("");
   const [gates, setGates] = useState([]);
+  const baseURL = BaseURL();
 
   useEffect(() => {
     // Fetch gates from the API
     axios
-      .get("http://98.70.76.242:8000/api/gates/")
+      .get(`${baseURL}gates/`)
       .then((response) => setGates(response.data))
       .catch((error) => console.error(error));
   }, []);
 
   const handleAssign = () => {
     axios
-      .post("http://98.70.76.242:8000/api/guard-assignments/", {
+      .post(`${baseURL}guard-assignments/`, {
         unique_code: uniqueCode,
         gate: gateId, // Assuming gateId is the ID of the selected gate
       })

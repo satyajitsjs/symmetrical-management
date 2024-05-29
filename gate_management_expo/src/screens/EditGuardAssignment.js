@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
 import axios from 'axios';
 import { Picker } from '@react-native-picker/picker'; // Import Picker from @react-native-picker/picker
+import BaseURL from '../components/BaseURL';
 
 const EditGuardAssignment = ({ route, navigation }) => {
   const { id } = route.params;
   const [uniqueCode, setUniqueCode] = useState('');
   const [gateId, setGateId] = useState('');
   const [gates, setGates] = useState([]);
+  const baseURL = BaseURL()
 
   useEffect(() => {
     fetchAssignmentDetails();
@@ -15,7 +17,7 @@ const EditGuardAssignment = ({ route, navigation }) => {
   }, []);
 
   const fetchAssignmentDetails = () => {
-    axios.get(`http://98.70.76.242:8000/api/guard-assignments/${id}/`)
+    axios.get(`${baseURL}guard-assignments/${id}/`)
       .then(response => {
         setUniqueCode(response.data.unique_code);
         setGateId(response.data.gate);
@@ -24,13 +26,13 @@ const EditGuardAssignment = ({ route, navigation }) => {
   };
 
   const fetchGates = () => {
-    axios.get('http://98.70.76.242:8000/api/gates/')
+    axios.get('`${baseURL}gates/')
       .then(response => setGates(response.data))
       .catch(error => console.error(error));
   };
 
   const handleUpdate = () => {
-    axios.put(`http://98.70.76.242:8000/api/guard-assignments/${id}/`, {
+    axios.put(`${baseURL}guard-assignments/${id}/`, {
       unique_code: uniqueCode,
       gate: gateId,
     })
