@@ -11,14 +11,14 @@ const AssignGuardForm = ({ navigation }) => {
   useEffect(() => {
     // Fetch gates from the API
     axios
-      .get("http://192.168.0.155:8000/api/gates/")
+      .get("http://98.70.76.242:8000/api/gates/")
       .then((response) => setGates(response.data))
       .catch((error) => console.error(error));
   }, []);
 
   const handleAssign = () => {
     axios
-      .post("http://192.168.0.155:8000/api/guard-assignments/", {
+      .post("http://98.70.76.242:8000/api/guard-assignments/", {
         unique_code: uniqueCode,
         gate: gateId, // Assuming gateId is the ID of the selected gate
       })

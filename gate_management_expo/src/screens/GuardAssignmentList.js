@@ -10,13 +10,13 @@ const GuardAssignmentList = ({ navigation }) => {
   }, []);
 
   const fetchAssignments = () => {
-    axios.get('http://192.168.0.155:8000/api/guard-assignments/')
+    axios.get('http://98.70.76.242:8000/api/guard-assignments/')
       .then(response => setAssignments(response.data))
       .catch(error => console.error(error));
   };
 
   const handleDelete = (id) => {
-    axios.delete(`http://192.168.0.155:8000/api/guard-assignments/${id}/`)
+    axios.delete(`http://98.70.76.242:8000/api/guard-assignments/${id}/`)
       .then(() => {
         Alert.alert('Success', 'Guard assignment deleted successfully!');
         fetchAssignments(); // Refresh the list after deletion

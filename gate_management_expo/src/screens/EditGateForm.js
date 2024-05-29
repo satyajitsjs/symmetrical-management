@@ -17,7 +17,7 @@ const EditGateForm = ({ route, navigation }) => {
 
   useEffect(() => {
     axios
-      .get(`http://192.168.0.155:8000/api/gates/${gateId}/`)
+      .get(`http://98.70.76.242:8000/api/gates/${gateId}/`)
       .then((response) => {
         const gate = response.data;
         setGateName(gate.name);
@@ -46,7 +46,7 @@ const EditGateForm = ({ route, navigation }) => {
 
   const handleSubmit = () => {
     axios
-      .put(`http://192.168.0.155:8000/api/gates/${gateId}/`, {
+      .put(`http://98.70.76.242:8000/api/gates/${gateId}/`, {
         name: gateName,
         number_of_guards: parseInt(numberOfGuards), // Convert back to integer for the API
         gate_type: gateType,

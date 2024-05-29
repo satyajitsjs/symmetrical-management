@@ -47,7 +47,7 @@ const AddGateForm = ({ navigation }) => {
     };
 
     axios
-      .post("http://192.168.0.155:8000/api/gates/", newGate)
+      .post("http://98.70.76.242:8000/api/gates/", newGate)
       .then((response) => {
         navigation.navigate("GateList");
       })

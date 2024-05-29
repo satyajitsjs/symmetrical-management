@@ -7,7 +7,7 @@ const GateList = ({ navigation }) => {
 
   useEffect(() => {
     axios
-      .get("http://192.168.0.155:8000/api/gates/")
+      .get("http://98.70.76.242:8000/api/gates/")
       .then((response) => {
         setGates(response.data);
       })
@@ -18,7 +18,7 @@ const GateList = ({ navigation }) => {
 
   const handleDelete = (id) => {
     axios
-      .delete(`http://192.168.0.155:8000/api/gates/${id}/`)
+      .delete(`http://98.70.76.242:8000/api/gates/${id}/`)
       .then(() => {
         setGates(gates.filter((gate) => gate.id !== id));
       })

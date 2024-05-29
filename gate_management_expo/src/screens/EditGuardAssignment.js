@@ -15,7 +15,7 @@ const EditGuardAssignment = ({ route, navigation }) => {
   }, []);
 
   const fetchAssignmentDetails = () => {
-    axios.get(`http://192.168.0.155:8000/api/guard-assignments/${id}/`)
+    axios.get(`http://98.70.76.242:8000/api/guard-assignments/${id}/`)
       .then(response => {
         setUniqueCode(response.data.unique_code);
         setGateId(response.data.gate);
@@ -24,13 +24,13 @@ const EditGuardAssignment = ({ route, navigation }) => {
   };
 
   const fetchGates = () => {
-    axios.get('http://192.168.0.155:8000/api/gates/')
+    axios.get('http://98.70.76.242:8000/api/gates/')
       .then(response => setGates(response.data))
       .catch(error => console.error(error));
   };
 
   const handleUpdate = () => {
-    axios.put(`http://192.168.0.155:8000/api/guard-assignments/${id}/`, {
+    axios.put(`http://98.70.76.242:8000/api/guard-assignments/${id}/`, {
       unique_code: uniqueCode,
       gate: gateId,
     })
