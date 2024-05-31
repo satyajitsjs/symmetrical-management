@@ -10,6 +10,7 @@ import AssignGuardForm from '../screens/AssignGuardForm';
 import GateList from '../screens/GateList';
 import GuardAssignmentList from '../screens/GuardAssignmentList';
 import EditGuardAssignment from '../screens/EditGuardAssignment';
+import ShoppingScreen from '../screens/ShoppingScreen';
 
 const Stack = createStackNavigator();
 
@@ -26,6 +27,7 @@ const AppNavigator = () => {
         <Stack.Screen name="GateList" component={GateList} />
         <Stack.Screen name="GuardAssignmentList" component={GuardAssignmentList} />
         <Stack.Screen name="EditGuardAssignment" component={EditGuardAssignment} />
+        <Stack.Screen name="Shoping" component={ShoppingScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
